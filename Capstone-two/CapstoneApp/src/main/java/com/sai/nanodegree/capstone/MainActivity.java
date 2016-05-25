@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     private GoogleApiClient mGoogleApiClient;
     private NavigationView navigationView;
     private boolean twoPaneMode;
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        CapstoneApplication application = (CapstoneApplication) getApplication();
+        mTracker = application.getDefaultTracker();
 
         if (findViewById(R.id.song_description_container_id) != null) {
             twoPaneMode = true;
@@ -177,6 +183,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        mTracker.setScreenName(getString(R.string.main_activity_screen_name));
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         if (twoPaneMode && (GlobalDataSingleton.getSingletonInstance().getWatchedSofar() != null)) {
             SongDetailsFragment fragment = (SongDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.song_description_container_id);
             fragment.updateWatchedSofarTime(GlobalDataSingleton.getSingletonInstance().getWatchedSofar(),

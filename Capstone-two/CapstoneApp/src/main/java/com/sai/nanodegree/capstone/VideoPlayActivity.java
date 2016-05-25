@@ -14,6 +14,8 @@ import android.support.v4.app.NavUtils;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.sai.nanodegree.capstone.data.PlayHistoryUpdateService;
 
 import java.util.Date;
@@ -99,9 +101,14 @@ public class VideoPlayActivity extends AppCompatActivity {
         }
     };
 
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CapstoneApplication application = (CapstoneApplication) getApplication();
+        mTracker = application.getDefaultTracker();
 
         Intent intent = getIntent();
         double watchedSoFar = 0.0; // mins
@@ -161,6 +168,13 @@ public class VideoPlayActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mTracker.setScreenName(getString(R.string.video_play_activity_screen_name));
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void toggle() {

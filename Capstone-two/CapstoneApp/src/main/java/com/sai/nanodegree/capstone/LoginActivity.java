@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -30,10 +32,15 @@ public class LoginActivity extends AppCompatActivity implements
     private View mProgressDialog;
     private GoogleApiClient mGoogleApiClient;
 
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        CapstoneApplication application = (CapstoneApplication) getApplication();
+        mTracker = application.getDefaultTracker();
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         mProgressDialog = findViewById(R.id.sing_in_progressbar);
@@ -81,6 +88,13 @@ public class LoginActivity extends AppCompatActivity implements
                 }
             });
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mTracker.setScreenName(getString(R.string.login_activity_screen_name));
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

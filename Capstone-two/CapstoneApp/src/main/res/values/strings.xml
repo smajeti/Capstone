@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Music Learning</string>
+    <string name="server_client_id">103513729189-gdi54knimu2uopn1o43felb31omuose3.apps.googleusercontent.com</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -50,4 +51,7 @@
     <string name="no_network_connectoin_msg">Can not sync data from cloud, device has no network connection</string>
     <string name="device_fetching_data_from_cloud">Song data should show up shortly, device is trying to fetch data from cloud</string>
     <string name="unknown_error_msg">encountered unrecoverable issue, please contact app owner</string>
+    <string name="main_activity_screen_name">Song Library View</string>
+    <string name="login_activity_screen_name">Login View</string>
+    <string name="video_play_activity_screen_name">VideoPlay View</string>
 </resources>
