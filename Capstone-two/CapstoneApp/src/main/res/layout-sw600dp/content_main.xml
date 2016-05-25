@@ -17,13 +17,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
-        <TextView
-            android:id="@+id/msgs_txt_view_id"
-            android:text="@string/no_data_to_show"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center"/>
     </FrameLayout>
 
     <FrameLayout

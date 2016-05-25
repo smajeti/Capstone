@@ -126,7 +126,6 @@ public class VideoLibraryFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         musicLibraryAdapter.swapCursor(data);
-        updateEmptyView();
         // @todo This is not the perfect solution modify this using CursorLoader for Categories
         if (songCategoryId == null) {
             HashMap<String, SongCategoryBean> localDbCategoryMap = GlobalDataSingleton.getSingletonInstance().getLocalDbCategoryMap(getActivity());
@@ -138,6 +137,7 @@ public class VideoLibraryFragment extends Fragment implements LoaderManager.Load
                 getLoaderManager().restartLoader(SONG_DETAILS_LOADER, null, this);
             }
         }
+        updateEmptyView();
     }
 
     @Override
@@ -154,8 +154,6 @@ public class VideoLibraryFragment extends Fragment implements LoaderManager.Load
             }
             else if (songCategoryId == null) {
                 emptyTxtView.setText(R.string.device_fetching_data_from_cloud);
-            } else {
-                emptyTxtView.setText(R.string.unknown_error_msg);
             }
 
             emptyTxtView.setVisibility(View.VISIBLE);
