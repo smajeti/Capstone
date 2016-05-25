@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes autoGenerate="false">
+    <datastore-index kind="SongDetails" ancestor="false" source="manual">
+        <property name="title" direction="asc"/>
+        <property name="ragam" direction="asc"/>
+        <property name="category" direction="asc"/>
+    </datastore-index>
+
+    <datastore-index kind="UserSongPlayHistory" ancestor="false" source="manual">
+        <property name="userId" direction="asc"/>
+        <property name="lastUpdatedDate" direction="asc"/>
+    </datastore-index>
+</datastore-indexes>

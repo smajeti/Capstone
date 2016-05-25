@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" >
+        <item
+            android:id="@+id/nav_sarali_varse"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Sarali Varse" />
+        <item
+            android:id="@+id/nav_dhatu_varse"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Dhatu Varse" />
+        <item
+            android:id="@+id/nav_alankarams"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Alankarams" />
+        <item
+            android:id="@+id/nav_geethams"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Geethams" />
+        <item
+            android:id="@+id/nav_swarajathis"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Swarajathis" />
+        <item
+            android:id="@+id/nav_varnams"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Varnams" />
+        <item
+            android:id="@+id/nav_krithis"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Krithis" />
+        <item
+            android:id="@+id/nav_mano_dharma"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Manodharma" />
+        <item
+            android:id="@+id/nav_mano_thillanas"
+            android:icon="@drawable/ic_video_library_black_24dp"
+            android:title="Thillanas" />
+
+        <item
+            android:id="@+id/nav_signout"
+            android:icon="@drawable/ic_logout_black_24dp"
+            android:title="Logout" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>
