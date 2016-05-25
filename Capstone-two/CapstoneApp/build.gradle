@@ -12,6 +12,16 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
     }
+
+    signingConfigs {
+        release {
+            storeFile file("~/myKeyStore/release-keystore")
+            storePassword "password"
+            keyAlias "ReleaseKey"
+            keyPassword "password"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
