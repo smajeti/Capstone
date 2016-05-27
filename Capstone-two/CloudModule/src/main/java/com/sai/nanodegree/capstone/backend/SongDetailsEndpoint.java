@@ -12,6 +12,9 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.images.ImagesService;
+import com.google.appengine.api.images.ImagesServiceFactory;
+import com.google.appengine.api.images.ServingUrlOptions;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -190,5 +193,16 @@ public class SongDetailsEndpoint {
         }
 
         return categoryId;
+    }
+
+    private String getImageUrl(String videoFileName) {
+        String key = "/gs/capstone-nanodegree-20160409.appspot.com/private/video_1.mp4"; // Such as /gs/example-bucket/categories/animals.png"
+        ImagesService imagesService = ImagesServiceFactory.getImagesService();
+        ServingUrlOptions options = ServingUrlOptions.Builder
+                .withGoogleStorageFileName(key);
+//                .imageSize(900) // Optional.
+//                .crop(true); // Optional.
+        String servingUrl = imagesService.getServingUrl(options);
+        return servingUrl;
     }
 }

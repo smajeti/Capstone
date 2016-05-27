@@ -209,7 +209,7 @@ public class MusicDbUtils {
     public static void syncSongDetails(Context context, Date after) throws Exception {
         // get song details
         SongDetailsEndpointUtils.EndpointsAsyncTask songDetailsAsyncTask = new SongDetailsEndpointUtils.EndpointsAsyncTask();
-        songDetailsAsyncTask.setCommandType(SongDetailsEndpointUtils.CommandType.GET_SONG_DETAILS);
+        songDetailsAsyncTask.setCommandType(SongDetailsEndpointUtils.CommandType.GET_ALL_SONG_DETAILS);
         List<SongDetailsBean> songDetailsBeanList = (List<SongDetailsBean>) songDetailsAsyncTask.doInForeground(context, after.getTime());
         insertOrUpdateSongDetailsList(context, songDetailsBeanList);
     }

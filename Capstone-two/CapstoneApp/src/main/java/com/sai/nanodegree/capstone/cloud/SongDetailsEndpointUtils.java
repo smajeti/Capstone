@@ -22,6 +22,7 @@ public class SongDetailsEndpointUtils {
     public enum CommandType {
         NONE,
         GET_SONG_DETAILS,
+        GET_ALL_SONG_DETAILS,
         CREATE_SONG_DETAILS
     }
 
@@ -62,6 +63,8 @@ public class SongDetailsEndpointUtils {
             if (callbackIface != null) {
                 switch (cmdType) {
                     case GET_SONG_DETAILS:
+                        callbackIface.onCommandExecutionDone((SongDetailsBean)result, cmdType);
+                    case GET_ALL_SONG_DETAILS:
                         callbackIface.onCommandExecutionDone((List<SongDetailsBean>)result, cmdType);
                         break;
                     case CREATE_SONG_DETAILS:
@@ -94,7 +97,9 @@ public class SongDetailsEndpointUtils {
                 case NONE:
                     break;
                 case GET_SONG_DETAILS:
-                    return runGetSongDetails(params);
+                    return getSongDetails(params);
+                case GET_ALL_SONG_DETAILS:
+                    return runGetAllSongDetails(params);
                 case CREATE_SONG_DETAILS:
                     return runCreateSongDetails(params);
                 default:
@@ -104,7 +109,21 @@ public class SongDetailsEndpointUtils {
             return null;
         }
 
-        private List<SongDetailsBean> runGetSongDetails(Object... params) {
+        private Object getSongDetails(Object[] params) {
+            context = (Context) params[0];
+            String title = (String) params[1];
+            String category = (String) params[2];
+            String ragam = (String) params[3];
+
+            try {
+                return sdEndPointApi.getSongDetails(title, category, ragam).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        private List<SongDetailsBean> runGetAllSongDetails(Object... params) {
             context = (Context) params[0];
             Long after = (Long) params[1];
 
